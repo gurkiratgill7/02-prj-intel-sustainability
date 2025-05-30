@@ -1,1 +1,214 @@
-/* Add your CSS here */
+/* General body styles */
+body {
+  font-family: Arial, sans-serif; /* Sets a common, readable font */
+  margin: 0; /* Removes default browser margins */
+  padding: 0; /* Removes default browser padding */
+  background-color: #f0f0f0; /* Light grey background for the page */
+  color: #333; /* Dark grey color for text */
+}
+
+/* Header styles */
+header {
+  background-color: #005392; /* Intel blue background color */
+  color: white; /* White text color */
+  padding: 20px; /* Adds some space inside the header */
+  /* Makes the header take up most of the viewport height, but leaves a little space at the bottom */
+  display: flex; /* Enables flexbox for layout */
+  align-items: center; /* Vertically centers the content */
+  justify-content: center; /* Horizontally centers the content */
+  min-height: 44vh; /* 50% of the viewport height */
+  text-align: center; /* Centers the content within the header */
+}
+
+header img {
+  width: 100px; /* Sets a width for the Intel logo */
+  margin-bottom: 10px; /* Adds some space below the logo */
+}
+
+header h1 {
+  font-size: 2em; /* Makes the main heading larger */
+  margin: 10px 0 25px 0; /* Adjusts spacing around the heading */
+}
+
+/* This creates the decorative line underneath the main heading */
+header h1::after {
+  content: ""; /* Necessary for pseudo-elements to appear, even if empty */
+  display: block; /* Allows us to set width, height, and auto margins for centering */
+  width: 100px; /* Sets the width of the line */
+  height: 10px; /* Sets the thickness of the line */
+  background-color: #00C7FD; /* A lighter blue color for the line, like in the image */
+  margin-top: 20px; /* No space needed above the line as h1's margin-bottom handles it */
+  margin-left: auto; /* In combination with margin-right: auto, this centers the line */
+  margin-right: auto; /* In combination with margin-left: auto, this centers the line */
+  margin-bottom: 20px; /* Adds space below the line, before the paragraph */
+}
+
+header p {
+  font-size: 1em; /* Sets the font size for the paragraph */
+  margin: 0; /* Removes default margins for the paragraph */
+  padding: 0 15px; /* Adds some horizontal padding to the paragraph */
+}
+
+/* Timeline Section Styles */
+section {
+  padding: 20px; /* Adds padding around the timeline section */
+  display: flex; /* Enables flexbox for layout */
+  flex-direction: column; /* Stacks timeline cards vertically by default (mobile-first) */
+  align-items: center; /* Centers cards horizontally on mobile */
+  /* Vertical scroll snapping for mobile */
+  overflow-y: auto; /* Make section scrollable if content overflows */
+  max-height: 60vh; /* Adjust as needed, ensures section itself scrolls */
+  scroll-snap-type: y mandatory; /* Enable vertical snapping */
+}
+
+/* Timeline Card Styles */
+section div {
+  background-color: white; /* White background for cards */
+  border: 1px solid #ddd; /* Light grey border for cards */
+  border-radius: 8px; /* Rounded corners for cards */
+  margin: 10px 0; /* Adds space between cards */
+  padding: 12px 15px; /* Adjusted padding for a more compact mobile view */
+  width: 90%; /* Makes cards take up most of the width on small screens */
+  max-width: 500px; /* Limits the maximum width of cards */
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1); /* Adds a subtle shadow to cards */
+  transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+  position: relative; /* Added for positioning the overlay */
+  overflow: hidden; /* Added to contain the overlay neatly */
+  scroll-snap-align: start; /* Snap alignment for vertical scroll */
+}
+
+section div img {
+  max-width: 100%; /* Ensures images don't overflow their container */
+  height: auto; /* Maintains aspect ratio of images */
+  border-radius: 4px; /* Slightly rounded corners for images */
+  margin-bottom: 10px; /* Adds space below images */
+}
+
+section div h2 {
+  color: #0071c5; /* Intel blue for the year heading */
+  margin-top: 0; /* Removes default top margin */
+  margin-bottom: 0; /* Remove bottom margin for compact mobile view */
+  font-size: 1em; /* Adjusted font size for mobile list view */
+  text-align: left; /* Align year to the left for mobile list view */
+}
+
+/* Hide title and image by default for mobile-first compact view */
+section div h3,
+section div img {
+  display: none;
+}
+
+/* Style for the description paragraph within a card - now an overlay */
+section div > p {
+  position: absolute; /* Position it over the card */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #005392; /* Header blue color */
+  color: white; /* White text for readability on blue */
+  margin: 0; /* Reset margin */
+  padding: 15px; /* Padding within the overlay */
+  box-sizing: border-box; /* Padding included in width/height */
+  display: flex; /* For centering content */
+  flex-direction: column; /* Stack content vertically if needed */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text */
+  opacity: 0; /* Hidden by default */
+  visibility: hidden; /* Hidden for accessibility and interaction */
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Smooth fade */
+  font-size: 0.9em; /* Copied from previous style */
+  line-height: 1.4; /* Copied from previous style */
+}
+
+/* Show the description overlay when the card is hovered */
+section div:hover > p {
+  opacity: 0.9; /* Makes the overlay semi-transparent on hover */
+  visibility: visible;
+}
+
+/* Footer paragraph style */
+body > p { /* Selects the paragraph that is a direct child of body */
+  text-align: center; /* Centers the text */
+  padding: 20px; /* Adds some padding around the text */
+  font-style: italic; /* Italicizes the text */
+  color: #555; /* Slightly lighter grey for this text */
+}
+
+/* Styles for larger screens (e.g., tablets and desktops) */
+@media (min-width: 768px) {
+  header {
+    padding: 40px; /* Increases padding for larger screens */
+  }
+
+  header img {
+    width: 150px; /* Makes the logo larger on bigger screens */
+  }
+
+  header h1 {
+    font-size: 2.5em; /* Increases heading font size for larger screens */
+  }
+
+  header p {
+    font-size: 1.2em; /* Increases paragraph font size for larger screens */
+    max-width: 600px; /* Limits the width of the paragraph for better readability */
+    margin: 0 auto; /* Centers the paragraph if it's narrower than the header */
+  }
+
+  /* Horizontal scrolling for timeline on larger screens */
+  section {
+    flex-direction: row; /* Arranges timeline cards in a row */
+    overflow-x: auto; /* Enables horizontal scrolling if cards overflow */
+    align-items: flex-start; /* Aligns cards to the top of the container */
+    justify-content: flex-start; /* Aligns cards to the start of the container */
+    padding-bottom: 20px; /* Adds some padding at the bottom for the scrollbar */
+    width: 75vw; /* Restrict the section's width */
+    margin-left: auto; /* Center the section horizontally */
+    margin-right: auto; /* Center the section horizontally */
+
+    /* Hide scrollbar for Firefox */
+    scrollbar-width: none;
+    /* Hide scrollbar for IE and Edge */
+    -ms-overflow-style: none;
+    /* Horizontal scroll snapping for desktop */
+    scroll-snap-type: x mandatory;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  section::-webkit-scrollbar {
+    display: none;
+  }
+
+  section div {
+    flex-shrink: 0; /* Prevents cards from shrinking to fit the container */
+    width: 300px; /* Sets a fixed width for cards in horizontal layout */
+    margin: 0 10px; /* Adds horizontal margin between cards */
+    /* Keep vertical margin if you want space above/below, or set to 0 if not */
+    scroll-snap-align: center; /* Snap alignment for horizontal scroll */
+    padding: 15px; /* Restore original padding for fuller desktop cards */
+  }
+
+  /* Restore or set desktop styles for card content */
+  section div h2 {
+    font-size: 1.4em; /* Larger font size for year on desktop */
+    text-align: center; /* Center year on desktop */
+    margin-bottom: 8px; /* Space below year on desktop */
+  }
+
+  section div h3 {
+    display: block; /* Show event title on desktop */
+    font-size: 1.1em;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  section div img {
+    display: block; /* Show image on desktop */
+    margin-left: auto; /* Center image */
+    margin-right: auto; /* Center image */
+    /* max-width: 100%; height: auto; border-radius: 4px; margin-bottom: 10px; are existing good styles */
+  }
+}
